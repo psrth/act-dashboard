@@ -5,8 +5,8 @@ const theme = {
       transparent: "transparent",
       black: "#000",
       white: "#fff",
-      primary: "#FF833D",
-      primary_fade: "#FFC8A9",
+      act_pink: "#FF833D",
+      act_blue: "#FFC8A9",
       grey: {
         700: "#2D3748",
         500: "#535353",

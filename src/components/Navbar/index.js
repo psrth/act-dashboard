@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {
     Flex,
@@ -10,8 +10,13 @@ import {
 } from "@chakra-ui/react"
 
 import actlogo from '../../resources/img/actlogo1.png'
+import AuthContext from '../../store/auth';
 
 const Navbar = () => {
+
+    const authCtx = useContext(AuthContext);
+    const isLoggedIn = authCtx.isLoggedIn;
+
     return(
         <div>
             <Flex 
@@ -34,21 +39,24 @@ const Navbar = () => {
                 >ACT Dashboard</Heading>
             </Link>
                 <Spacer />
-            <Link to="/">
-                <Text
-                    fontSize="24px"
-                    paddingRight="3vw"
-                    fontWeight="medium"
-                    color="grey.700"
-                >Dashboard</Text>
-            </Link>
+                { isLoggedIn ? 
+                <Link to="/">
+                    <Text
+                        fontSize="24px"
+                        paddingRight="3vw"
+                        fontWeight="medium"
+                        color="grey.700"
+                    >Dashboard</Text>
+                </Link> : null }
             <Link to="/login">
                 <Button
                     fontSize="24px"
                     padding="24px"
                     marginRight="1.5vw"
                     color="grey.700"
-                >Login</Button>
+                >
+                    {isLoggedIn ? 'Logout' : 'Login'}
+                </Button>
             </Link>
             </Flex>
         </div>

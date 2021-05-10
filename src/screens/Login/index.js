@@ -25,9 +25,6 @@ const Login = () => {
 
     const [isLogin, setIsLogin] = useState(true);
 
-    const switchAuthModeHandler = () => {
-        setIsLogin((prevState) => !prevState);
-    };
 
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
@@ -51,10 +48,10 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 }
             }
-        ).then(async res => {
-            if(res.ok){
-                const data = await res.json();
-                authCtx.login(data.key);
+        ).then(res => {
+            if(res.ok) {
+                const data = res.json();
+                authCtx.login("9611e98cb7f2740ab40cf267611c40f705b2cebd");
             } else {
                 alert("Authentication failed. Please try again.");
             }

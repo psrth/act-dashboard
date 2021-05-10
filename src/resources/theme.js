@@ -3,7 +3,7 @@ import { extendTheme } from '@chakra-ui/react'
 const theme = {
     colors: {
       transparent: "transparent",
-      black: "#000",
+      black: "#030303",
       white: "#fff",
       act_pink: "#FF833D",
       act_blue: "#FFC8A9",

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from 'react'
+import React, { Fragment, useState, useRef, useContext } from 'react'
 import { 
     Button, 
     Flex, 
@@ -13,9 +13,13 @@ import {
     InputGroup,
     InputRightElement,
 } from '@chakra-ui/react';
+import AuthContext from '../../store/auth';
 
 
 const Login = () => {
+
+    const authCtx = useContext(AuthContext);
+
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
 
@@ -50,7 +54,7 @@ const Login = () => {
         ).then(async res => {
             if(res.ok){
                 const data = await res.json();
-                console.log(data.key);
+                authCtx.login(data.key);
             } else {
                 alert("Authentication failed. Please try again.");
             }
@@ -66,7 +70,7 @@ const Login = () => {
                 alignItems="center">
             
                 <Box 
-                    width="500px"
+                    width="550px"
                     padding="50px"
                     borderRadius="5px"
                     border="5"

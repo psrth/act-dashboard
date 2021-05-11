@@ -6,10 +6,22 @@ import React, {
 } from 'react'
 
 import {
-    Button,
-    Text
-} from '@chakra-ui/react'
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    Text,
+    Box, 
+    Flex,
+    Spinner
+  } from "@chakra-ui/react"
+
 import AuthContext from '../../store/auth'
+import PaymentsTable from '../../components/PaymentsTable'
 
 const Dashboard = () => {
 
@@ -24,7 +36,7 @@ const Dashboard = () => {
         userDetailsApiRequest();
         getStatisticsApiRequest();
         getAllPaymentsApiRequest();
-    }, []);
+    }, []); 
 
     const userDetailsApiRequest = () => {
         fetch('https://act-grants-crm.herokuapp.com/rest-auth/user/',
@@ -97,10 +109,11 @@ const Dashboard = () => {
 
     return(
         <Fragment>
-            <h1>DASHBOARD PAGE AFTER LOGIN</h1>
-            <Text>{JSON.stringify(userDetails)}</Text>
-            <Text>{JSON.stringify(paymentStatistics)}</Text>
-            <Text>{JSON.stringify(allPayments)}</Text>
+            {((userDetails && paymentStatistics && allPayments)) ?
+            <PaymentsTable payment={allPayments} userDetails={userDetails} /> : <Spinner />}
+            <Text>{JSON.stringify(userDetails)}</Text><br></br>
+            <Text>{JSON.stringify(paymentStatistics)}</Text><br></br>
+            {/* <Text>{JSON.stringify(allPayments)}</Text> */}
         </Fragment>
     )
 }

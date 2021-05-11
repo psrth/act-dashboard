@@ -11,7 +11,7 @@ import {
 
 const UserCards = (props) => {
   return(
-    <Box width="75%" bg="grey.50" pt="30px" pb="50px">
+    <Box width="75%" bg="grey.50" pb="50px">
       <Flex direction={["column", "column", "column", "row", "row"]} justifyContent="space-between">
         <Box width={["100%", "100%", "100%", "30%", "30%"]} mt="20px" boxShadow="base" p="6" rounded="lg" bg="white" justifyContent="center">
             <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
@@ -36,7 +36,7 @@ const UserCards = (props) => {
                     fontSize="40px"
                     fontWeight="bold"
                     color="grey.700"
-                    pt="25px"
+                    pt="30px"
                     textAlign="center"
                 >INR {props.paymentStatistics.total.amount__sum}</Text>
                 <Text
@@ -59,7 +59,7 @@ const UserCards = (props) => {
                     fontSize="40px"
                     fontWeight="bold"
                     color="grey.700"
-                    pt="25px"
+                    pt="30px"
                     textAlign="center"
                 >{props.paymentStatistics.count.amount__count}</Text>
                 <Text

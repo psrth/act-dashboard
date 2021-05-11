@@ -36,16 +36,6 @@ const PaymentsTable = (props) => {
                 </Tr>
             ))}
         </Tbody>
-        <Tfoot>
-            <Tr>
-            <Th>NAME</Th>
-            <Th>EMAIL ADDRESS</Th>
-            <Th>PHONE NUMBER</Th>
-            {/* <Th>PAN CARD</Th> */}
-            <Th>COUNTRY</Th>
-            <Th isNumeric>AMOUNT (INR)</Th>
-            </Tr>
-        </Tfoot>
       </Table>
     </Box>
   )

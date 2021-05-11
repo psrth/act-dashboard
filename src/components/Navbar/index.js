@@ -4,7 +4,6 @@ import {
     Flex,
     Spacer,
     Image,
-    Text,
     Button,
     Heading
 } from "@chakra-ui/react"

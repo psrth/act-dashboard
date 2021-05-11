@@ -6,16 +6,7 @@ import React, {
 } from 'react'
 
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    Text,
-    Box, 
+    Heading,
     Flex,
     Spinner
   } from "@chakra-ui/react"
@@ -23,6 +14,7 @@ import {
 import AuthContext from '../../store/auth'
 import PaymentsTable from '../../components/PaymentsTable'
 import UserCards from '../../components/UserCards'
+import LineChart from '../../components/Chart'
 
 
 const Dashboard = () => {
@@ -33,11 +25,26 @@ const Dashboard = () => {
     const [userDetails, setUserDetails] = useState(null);
     const [paymentStatistics, setPaymentStatistics] = useState(null);
     const [allPayments, setAllPayments] = useState(null);
+    const [data, setData] = useState(
+        {
+            labels: ['1', '2', '3', '4', '5', '6', '7'],
+            datasets: [
+              {
+                label: 'Amount in INR',
+                data: [12, 19, 3, 5, 2, 3, 20],
+                fill: false,
+                backgroundColor: '#00ADEE',
+                borderColor: '#00ADEE',
+              },
+            ],
+        }
+    )
 
     useEffect(() => {
         userDetailsApiRequest();
         getStatisticsApiRequest();
         getAllPaymentsApiRequest();
+        setChartData();
     }, []); 
 
     const userDetailsApiRequest = () => {
@@ -108,18 +115,55 @@ const Dashboard = () => {
                 }
             }))
     }
+    
+    const setChartData = () => {
+        if (paymentStatistics) {
+        setData(
+            {
+                labels: paymentStatistics.daily.day[0],
+                datasets: [
+                  {
+                    label: 'Amount in INR',
+                    data: paymentStatistics.daily.values[0],
+                    fill: false,
+                    backgroundColor: '#00ADEE',
+                    borderColor: '#00ADEE',
+                  },
+                ],
+            }
+        )}
+    }
 
     return(
         <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
             {((userDetails && paymentStatistics && allPayments)) ?
             <Fragment>
+                <Heading
+                    color="grey.300"
+                    pt="40px"
+                    pb="0px"
+                    fontSize="32px"
+                >DONATIONS OVERVIEW</Heading>
                 <UserCards paymentStatistics={paymentStatistics} userDetails={userDetails} />
+                <Heading
+                    color="grey.300"
+                    pt="20px"
+                    pb="20px"
+                    fontSize="32px"
+                >DONATIONS IN LAST 7 DAYS</Heading>
+                <LineChart data={data}/>
+                <Heading
+                    color="grey.300"
+                    pt="20px"
+                    pb="30px"
+                    fontSize="32px"
+                >ALL PAYMENTS</Heading>
                 <PaymentsTable payment={allPayments} userDetails={userDetails} /> 
             </Fragment> : 
             <Spinner /> }
-            <Text>{JSON.stringify(userDetails)}</Text><br></br>
+            {/* <Text>{JSON.stringify(userDetails)}</Text><br></br>
             <Text>{JSON.stringify(paymentStatistics)}</Text><br></br>
-            {/* <Text>{JSON.stringify(allPayments)}</Text> */}
+            <Text>{JSON.stringify(allPayments)}</Text> */}
         </Flex>
     )
 }

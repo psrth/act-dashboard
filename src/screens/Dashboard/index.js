@@ -22,6 +22,8 @@ import {
 
 import AuthContext from '../../store/auth'
 import PaymentsTable from '../../components/PaymentsTable'
+import UserCards from '../../components/UserCards'
+
 
 const Dashboard = () => {
 
@@ -108,13 +110,17 @@ const Dashboard = () => {
     }
 
     return(
-        <Fragment>
+        <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
             {((userDetails && paymentStatistics && allPayments)) ?
-            <PaymentsTable payment={allPayments} userDetails={userDetails} /> : <Spinner />}
+            <Fragment>
+                <UserCards paymentStatistics={paymentStatistics} userDetails={userDetails} />
+                <PaymentsTable payment={allPayments} userDetails={userDetails} /> 
+            </Fragment> : 
+            <Spinner /> }
             <Text>{JSON.stringify(userDetails)}</Text><br></br>
             <Text>{JSON.stringify(paymentStatistics)}</Text><br></br>
             {/* <Text>{JSON.stringify(allPayments)}</Text> */}
-        </Fragment>
+        </Flex>
     )
 }
 

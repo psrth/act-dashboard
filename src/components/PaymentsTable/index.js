@@ -13,7 +13,7 @@ import {
 
 const PaymentsTable = (props) => {
   return(
-    <Box id="table" margin="80px">
+    <Box id="table" width="80%">
       <Table variant="simple" size="md">
         <TableCaption>ACT Donations from the {props.userDetails.company.name}</TableCaption>
         <Thead>

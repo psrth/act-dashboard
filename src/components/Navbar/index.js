@@ -31,14 +31,14 @@ const Navbar = () => {
             >
             
                 <Image 
-                    boxSize="50px"
+                    boxSize={["30px", "30px", "50px", "50px", "50px"]}
                     src={actlogo}
                     alt="Segun Adebayo"
                 />
             <Link to="/">
                 <Heading
-                    fontSize="32px"
-                    paddingLeft="1vw"
+                    fontSize={["20px", "20px", "32px", "32px", "32px"]}
+                    paddingLeft={["0.5vw", "0.5vw", "0.5vw", "1vw", "1vw"]}
                     color="grey.700"
                 >ACT Dashboard</Heading>
             </Link>
@@ -46,17 +46,17 @@ const Navbar = () => {
                 { isLoggedIn ? 
                 <Link to="/dashboard">
                     <Text
-                        fontSize="24px"
-                        paddingRight="3vw"
+                        fontSize={["16px", "16px", "24px", "24px", "24px"]}
+                        paddingRight={["1.5vw", "1.5vw", "1.5vw", "3vw", "3vw"]}
                         fontWeight="medium"
                         color="grey.700"
                     >Dashboard</Text>
                 </Link> : null }
             <Link to="/login">
                 <Button
-                    fontSize="24px"
-                    padding="24px"
-                    marginRight="1.5vw"
+                    fontSize={["16px", "16px", "24px", "24px", "24px"]}
+                    padding={["10px", "10px", "24px", "24px", "24px"]}
+                    // marginRight="1.5vw"
                     color="grey.700"
                     onClick={logoutHandler}
                 >

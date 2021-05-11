@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import {
     Flex,
@@ -16,6 +16,10 @@ const Navbar = () => {
 
     const authCtx = useContext(AuthContext);
     const isLoggedIn = authCtx.isLoggedIn;
+    
+    const logoutHandler = () => {
+        if (isLoggedIn) authCtx.logout();
+    }
 
     return(
         <div>
@@ -40,7 +44,7 @@ const Navbar = () => {
             </Link>
                 <Spacer />
                 { isLoggedIn ? 
-                <Link to="/">
+                <Link to="/dashboard">
                     <Text
                         fontSize="24px"
                         paddingRight="3vw"
@@ -54,6 +58,7 @@ const Navbar = () => {
                     padding="24px"
                     marginRight="1.5vw"
                     color="grey.700"
+                    onClick={logoutHandler}
                 >
                     {isLoggedIn ? 'Logout' : 'Login'}
                 </Button>

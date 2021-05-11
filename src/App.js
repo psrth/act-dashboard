@@ -15,13 +15,13 @@ function App() {
       <Switch>
 
         <Route path="/" exact>
-          <Login />
+        {isLoggedIn ?  <Redirect to="/dashboard" /> : <Login /> }
         </Route>
 
-        {isLoggedIn ? 
+       
         <Route path="/dashboard">
-          <Dashboard />
-        </Route> : null }
+        {isLoggedIn ?  <Dashboard /> : <Redirect to="/" /> }
+        </Route>
 
         <Route path="*">
           <Redirect to="/" />

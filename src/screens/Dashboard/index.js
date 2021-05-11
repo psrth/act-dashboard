@@ -8,7 +8,7 @@ import React, {
 import {
     Heading,
     Flex,
-    Spinner
+    Spinner,
   } from "@chakra-ui/react"
 
 import AuthContext from '../../store/auth'
@@ -25,28 +25,13 @@ const Dashboard = () => {
     const [userDetails, setUserDetails] = useState(null);
     const [paymentStatistics, setPaymentStatistics] = useState(null);
     const [allPayments, setAllPayments] = useState(null);
-    const [data, setData] = useState(
-        {
-            labels: ['1', '2', '3', '4', '5', '6', '7'],
-            datasets: [
-              {
-                label: 'Amount in INR',
-                data: [12, 19, 3, 5, 2, 3, 20],
-                fill: false,
-                backgroundColor: '#00ADEE',
-                borderColor: '#00ADEE',
-              },
-            ],
-        }
-    )
 
     useEffect(() => {
         userDetailsApiRequest();
         getStatisticsApiRequest();
         getAllPaymentsApiRequest();
-        setChartData();
     }, []); 
-
+    
     const userDetailsApiRequest = () => {
         fetch('https://act-grants-crm.herokuapp.com/rest-auth/user/',
                 {   
@@ -115,24 +100,6 @@ const Dashboard = () => {
                 }
             }))
     }
-    
-    const setChartData = () => {
-        if (paymentStatistics) {
-        setData(
-            {
-                labels: paymentStatistics.daily.day[0],
-                datasets: [
-                  {
-                    label: 'Amount in INR',
-                    data: paymentStatistics.daily.values[0],
-                    fill: false,
-                    backgroundColor: '#00ADEE',
-                    borderColor: '#00ADEE',
-                  },
-                ],
-            }
-        )}
-    }
 
     return(
         <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
@@ -153,7 +120,10 @@ const Dashboard = () => {
                     fontSize="28px"
                     textAlign="center"
                 >DONATIONS IN LAST 7 DAYS</Heading>
-                <LineChart data={data}/>
+                <LineChart 
+                    labels={paymentStatistics.daily.day[0]}
+                    data={paymentStatistics.daily.values[0]}
+                />
                 <Heading
                     color="grey.300"
                     pt="20px"

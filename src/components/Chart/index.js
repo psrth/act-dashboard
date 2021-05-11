@@ -1,11 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import {
-    Flex,
-    Box, 
-    Image,
-    Text,
-  } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 
 const options = {

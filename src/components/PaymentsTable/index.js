@@ -3,7 +3,6 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
@@ -13,7 +12,7 @@ import {
 
 const PaymentsTable = (props) => {
   return(
-    <Box id="table" width="80%">
+    <Box id="table" width="80%" pb="60px">
       <Table variant="simple" size="md">
         <TableCaption>ACT Donations from the {props.userDetails.company.name}</TableCaption>
         <Thead>
@@ -28,11 +27,11 @@ const PaymentsTable = (props) => {
         <Tbody>
             {props.payment.map((payment, key) => (
                 <Tr>
-                <Td fontWeight="medium" color="grey.700">{payment.donor_name}</Td>
-                <Td>{payment.donor_email}</Td>
-                <Td>{payment.donor_phone}</Td>
-                <Td>{payment.donor_country}</Td>
-                <Td fontWeight="medium" color="grey.700" isNumeric>INR {payment.amount}</Td>
+                <Td fontWeight="bold" color="grey.700">{payment.donor_name}</Td>
+                <Td fontWeight="medium" color="grey.500">{payment.donor_email}</Td>
+                <Td fontWeight="medium" color="grey.500">{payment.donor_phone}</Td>
+                <Td fontWeight="medium" color="grey.500">{payment.donor_country}</Td>
+                <Td fontWeight="bold" color="grey.700" isNumeric>INR {payment.amount}</Td>
                 </Tr>
             ))}
         </Tbody>

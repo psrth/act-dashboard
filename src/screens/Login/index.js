@@ -85,11 +85,11 @@ const Login = () => {
                     borderRadius="5px"
                     border="5"
                     borderColor="grey.20">
-
+                
                         <FormControl id="email">
-                            <FormLabel fontWeight="medium" fontSize="24px" color="grey.700">Email address</FormLabel>
+                            <FormLabel fontWeight="medium" fontSize="24px" color="grey.700">Username</FormLabel>
                             <Input type="email" ref={emailInputRef} />
-                            <FormHelperText fontSize="18px" >Enter the email to login to ACT Corporate Dashboard.</FormHelperText>
+                            <FormHelperText fontSize="18px" >Enter your organisation's username.</FormHelperText>
                         </FormControl>
             
                         <Text marginTop="25px" fontWeight="medium" fontSize="24px" color="grey.700" mb="8px">Enter your password:</Text>
@@ -115,7 +115,6 @@ const Login = () => {
                             padding="24px"
                             fontSize="22px"
                         >Login</Button>
-
                 </Box>
             </Flex>
         </Fragment>

@@ -142,28 +142,28 @@ const Dashboard = () => {
                     color="grey.300"
                     pt="40px"
                     pb="0px"
-                    fontSize="32px"
+                    fontSize="28px"
+                    textAlign="center"
                 >DONATIONS OVERVIEW</Heading>
                 <UserCards paymentStatistics={paymentStatistics} userDetails={userDetails} />
                 <Heading
                     color="grey.300"
                     pt="20px"
                     pb="20px"
-                    fontSize="32px"
+                    fontSize="28px"
+                    textAlign="center"
                 >DONATIONS IN LAST 7 DAYS</Heading>
                 <LineChart data={data}/>
                 <Heading
                     color="grey.300"
                     pt="20px"
                     pb="30px"
-                    fontSize="32px"
+                    fontSize="28px"
+                    textAlign="center"
                 >ALL PAYMENTS</Heading>
                 <PaymentsTable payment={allPayments} userDetails={userDetails} /> 
             </Fragment> : 
             <Spinner /> }
-            {/* <Text>{JSON.stringify(userDetails)}</Text><br></br>
-            <Text>{JSON.stringify(paymentStatistics)}</Text><br></br>
-            <Text>{JSON.stringify(allPayments)}</Text> */}
         </Flex>
     )
 }

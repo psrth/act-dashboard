@@ -7,6 +7,7 @@ import {
     Button,
     Heading
 } from "@chakra-ui/react"
+import { DownloadIcon } from '@chakra-ui/icons'
 
 import actlogo from '../../resources/img/actlogo1.png'
 import AuthContext from '../../store/auth';
@@ -23,7 +24,7 @@ const Navbar = () => {
     return(
         <div>
             <Flex 
-                paddingTop="2vw"
+                paddingTop="25px"
                 paddingLeft="2.5vw"
                 paddingRight="2.5vw"
                 alignItems="center"
@@ -42,14 +43,24 @@ const Navbar = () => {
             </Link>
                 <Spacer />
                 { isLoggedIn ? 
-                        <Button
-                            fontSize={["20px", "20px", "24px", "24px", "24px"]}
-                            padding={["14px", "14px", "24px", "24px", "24px"]}
-                            color="grey.700"
-                            onClick={logoutHandler}
-                        >
-                            Logout
-                        </Button> : null }
+                <>
+                    <DownloadIcon 
+                        onClick={()=>window.print()} 
+                        w={6} 
+                        h={6} 
+                        mr="25px"
+                        color="grey.500"
+                        cursor="pointer"
+                    />
+                    <Button
+                        fontSize={["20px", "20px", "24px", "24px", "24px"]}
+                        padding={["14px", "14px", "24px", "24px", "24px"]}
+                        color="grey.700"
+                        onClick={logoutHandler}
+                    >
+                        Logout
+                    </Button> 
+                </>: null }
             </Flex>
         </div>
     )

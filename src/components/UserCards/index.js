@@ -6,28 +6,26 @@ import {
     Text,
   } from "@chakra-ui/react"
 
-  // props.paymentStatistics
-  // props.userDetails
 
-const UserCards = (props) => {
+  const UserCards = (props) => {
   return(
     <Box width="75%" bg="grey.50" pb="50px">
       <Flex direction={["column", "column", "column", "row", "row"]} justifyContent="space-between">
         <Box width={["100%", "100%", "100%", "30%", "30%"]} mt="20px" boxShadow="base" p="6" rounded="lg" bg="white" justifyContent="center">
             <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
                 <Text
-                    fontSize="20px"
+                    fontSize="18px"
                     fontWeight="medium"
                     color="grey.300"
                     textAlign="center"
                 >Welcome, {props.userDetails.company.name}</Text>
-                <Image boxSize="150px" src={props.userDetails.company.logo} alt="Dan Abramov"/>
+                <Image boxSize="150px" src={props.userDetails.company.logo}/>
             </Flex>
         </Box>
         <Box width={["100%", "100%", "100%", "30%", "30%"]} mt="20px" boxShadow="base" p="6" rounded="lg" bg="white" justifyContent="center">
             <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
                 <Text
-                    fontSize="20px"
+                    fontSize="18px"
                     fontWeight="medium"
                     color="grey.300"
                     textAlign="center"
@@ -40,7 +38,7 @@ const UserCards = (props) => {
                     textAlign="center"
                 >INR {props.paymentStatistics.total.amount__sum}</Text>
                 <Text
-                    fontSize="20px"
+                    fontSize="18px"
                     fontWeight="medium"
                     color="grey.300"
                     textAlign="center"

@@ -12,7 +12,7 @@ import {
 
 const PaymentsTable = (props) => {
   return(
-    <Box id="table" width="80%" pb="60px">
+    <Box id="table" width="80%" pb="60px" overflowX="scroll">
       <Table variant="simple" size="md">
         <TableCaption>ACT Donations from the {props.userDetails.company.name}</TableCaption>
         <Thead>

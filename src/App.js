@@ -15,12 +15,7 @@ function App() {
       <Switch>
 
         <Route path="/" exact>
-        {isLoggedIn ?  <Redirect to="/dashboard" /> : <Login /> }
-        </Route>
-
-       
-        <Route path="/dashboard">
-        {isLoggedIn ?  <Dashboard /> : <Redirect to="/" /> }
+        {isLoggedIn ?  <Dashboard /> : <Login /> }
         </Route>
 
         <Route path="*">

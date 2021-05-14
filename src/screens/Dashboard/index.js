@@ -121,8 +121,8 @@ const Dashboard = () => {
                     textAlign="center"
                 >DONATIONS IN LAST 7 DAYS</Heading>
                 <LineChart 
-                    labels={paymentStatistics.daily.day[0]}
-                    data={paymentStatistics.daily.values[0]}
+                    labels={paymentStatistics.daily.day}
+                    data={paymentStatistics.daily.values}
                 />
                 <Heading
                     color="grey.300"

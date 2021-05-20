@@ -13,10 +13,8 @@ import {
   } from "@chakra-ui/react"
 
 import AuthContext from '../../store/auth'
-import PaymentsTable from '../../components/PaymentsTable'
-import UserCards from '../../components/UserCards'
-import LineChart from '../../components/Chart'
-
+import Domestic from '../../components/Domestic'
+import International from '../../components/International'
 
 const Dashboard = () => {
 
@@ -34,7 +32,7 @@ const Dashboard = () => {
         getStatisticsApiRequest();
         getAllDomesticPaymentsApi();
         getAllInternationalPaymentsApi();
-    }, [isDomestic]); 
+    }, []); 
     
     const userDetailsApiRequest = () => {
         fetch('https://act-grants-crm.herokuapp.com/rest-auth/user/',
@@ -136,43 +134,21 @@ const Dashboard = () => {
         <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
             {((userDetails && paymentStatistics && domesticPayments)) ?
             <Fragment>
-                <Button colorScheme="blue" onClick={toggleDomestic}>Button</Button>
-                <Heading
-                    color="grey.300"
-                    pt="40px"
-                    pb="0px"
-                    fontSize="28px"
-                    textAlign="center"
-                >DONATIONS OVERVIEW</Heading>
-                { isDomestic ? 
-                <UserCards paymentStatistics={paymentStatistics.domestic} userDetails={userDetails} /> :
-                <UserCards paymentStatistics={paymentStatistics.international} userDetails={userDetails} />}
-                <Heading
-                    color="grey.300"
-                    pt="20px"
-                    pb="20px"
-                    fontSize="28px"
-                    textAlign="center"
-                >DONATIONS IN LAST 7 DAYS</Heading>
-                { isDomestic ? 
-                <LineChart 
-                    labels={paymentStatistics.domestic.daily.day}
-                    data={paymentStatistics.domestic.daily.values}
-                /> : 
-                <LineChart 
-                    labels={paymentStatistics.international.daily.day}
-                    data={paymentStatistics.international.daily.values}
-                /> }
-                <Heading
-                    color="grey.300"
-                    pt="20px"
-                    pb="30px"
-                    fontSize="28px"
-                    textAlign="center"
-                >ALL PAYMENTS</Heading>
-                { isDomestic ? 
-                <PaymentsTable payment={domesticPayments.results} userDetails={userDetails} /> :
-                <PaymentsTable payment={internationalPayments.results} userDetails={userDetails} /> }
+                {isDomestic ?
+                    <Domestic 
+                        toggleDomestic={toggleDomestic}
+                        paymentStatistics={paymentStatistics}
+                        userDetails={userDetails}
+                        domesticPayments={domesticPayments}
+                        isDomestic={isDomestic}
+                    /> :
+                    <International 
+                        toggleDomestic={toggleDomestic}
+                        paymentStatistics={paymentStatistics}
+                        userDetails={userDetails}
+                        internationalPayments={internationalPayments}
+                        isDomestic={isDomestic}
+                    /> }
             </Fragment> : 
             <Spinner /> }
         </Flex>
@@ -180,3 +156,5 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
+
+

@@ -36,7 +36,7 @@ const Navbar = () => {
                 />
             <Link to="/">
                 <Heading
-                    fontSize={["24px", "24px", "32px", "32px", "32px"]}
+                    fontSize={["20px", "20px", "24px", "32px", "32px"]}
                     paddingLeft={["0.5vw", "0.5vw", "0.5vw", "1vw", "1vw"]}
                     color="grey.700"
                 >ACT Dashboard</Heading>

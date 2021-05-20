@@ -9,6 +9,7 @@ import {
     Heading,
     Flex,
     Spinner,
+    Button,
   } from "@chakra-ui/react"
 
 import AuthContext from '../../store/auth'
@@ -24,13 +25,16 @@ const Dashboard = () => {
     
     const [userDetails, setUserDetails] = useState(null);
     const [paymentStatistics, setPaymentStatistics] = useState(null);
-    const [allPayments, setAllPayments] = useState(null);
+    const [domesticPayments, setDomesticPayments] = useState(null);
+    const [internationalPayments, setInternationalPayments] = useState(null);
+    const [isDomestic, setIsDomestic] = useState(true);
 
     useEffect(() => {
         userDetailsApiRequest();
         getStatisticsApiRequest();
-        getAllPaymentsApiRequest();
-    }, []); 
+        getAllDomesticPaymentsApi();
+        getAllInternationalPaymentsApi();
+    }, [isDomestic]); 
     
     const userDetailsApiRequest = () => {
         fetch('https://act-grants-crm.herokuapp.com/rest-auth/user/',
@@ -78,8 +82,8 @@ const Dashboard = () => {
             }))
     }
 
-    const getAllPaymentsApiRequest = () => {
-        fetch('https://act-grants-crm.herokuapp.com/donation/get_all_donations/',
+    const getAllDomesticPaymentsApi = () => {
+        fetch('https://act-grants-crm.herokuapp.com/donation/get_all_donations/?limit=100&domestic=true&offset=0&international=false',
                 {   
                     method: 'GET',
                     headers: {
@@ -94,17 +98,45 @@ const Dashboard = () => {
                 })
             ).then(res => {
                 if(res.data){
-                    setAllPayments(res.data);
+                    setDomesticPayments(res.data);
                 } else {
                     alert("ERROR RETRIEVING CONTENT.");
                 }
             }))
     }
 
+    const getAllInternationalPaymentsApi = () => {
+        fetch('https://act-grants-crm.herokuapp.com/donation/get_all_donations/?limit=100&domestic=false&offset=0&international=true',
+                {   
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': authToken
+                    }
+                }
+            ).then(response => 
+                response.json().then(data => ({
+                    data: data,
+                    status: response.status
+                })
+            ).then(res => {
+                if(res.data){
+                    setInternationalPayments(res.data);
+                } else {
+                    alert("ERROR RETRIEVING CONTENT.");
+                }
+            }))
+    }
+    
+    const toggleDomestic = () => {
+        setIsDomestic(!isDomestic);
+    }
+
     return(
         <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
-            {((userDetails && paymentStatistics && allPayments)) ?
+            {((userDetails && paymentStatistics && domesticPayments)) ?
             <Fragment>
+                <Button colorScheme="blue" onClick={toggleDomestic}>Button</Button>
                 <Heading
                     color="grey.300"
                     pt="40px"
@@ -112,7 +144,9 @@ const Dashboard = () => {
                     fontSize="28px"
                     textAlign="center"
                 >DONATIONS OVERVIEW</Heading>
-                <UserCards paymentStatistics={paymentStatistics} userDetails={userDetails} />
+                { isDomestic ? 
+                <UserCards paymentStatistics={paymentStatistics.domestic} userDetails={userDetails} /> :
+                <UserCards paymentStatistics={paymentStatistics.international} userDetails={userDetails} />}
                 <Heading
                     color="grey.300"
                     pt="20px"
@@ -120,10 +154,15 @@ const Dashboard = () => {
                     fontSize="28px"
                     textAlign="center"
                 >DONATIONS IN LAST 7 DAYS</Heading>
+                { isDomestic ? 
                 <LineChart 
-                    labels={paymentStatistics.daily.day}
-                    data={paymentStatistics.daily.values}
-                />
+                    labels={paymentStatistics.domestic.daily.day}
+                    data={paymentStatistics.domestic.daily.values}
+                /> : 
+                <LineChart 
+                    labels={paymentStatistics.international.daily.day}
+                    data={paymentStatistics.international.daily.values}
+                /> }
                 <Heading
                     color="grey.300"
                     pt="20px"
@@ -131,7 +170,9 @@ const Dashboard = () => {
                     fontSize="28px"
                     textAlign="center"
                 >ALL PAYMENTS</Heading>
-                <PaymentsTable payment={allPayments} userDetails={userDetails} /> 
+                { isDomestic ? 
+                <PaymentsTable payment={domesticPayments.results} userDetails={userDetails} /> :
+                <PaymentsTable payment={internationalPayments.results} userDetails={userDetails} /> }
             </Fragment> : 
             <Spinner /> }
         </Flex>

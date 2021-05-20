@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
     Flex,
     Box, 
@@ -24,21 +24,41 @@ import {
         </Box>
         <Box width={["100%", "100%", "100%", "30%", "30%"]} mt="20px" boxShadow="base" p="6" rounded="lg" bg="white" justifyContent="center">
             <Flex direction="column" margin="auto" alignItems="center" justifyContent="center">
+                { props.isDomestic ? 
+                <Fragment>
+                    <Text
+                        fontSize="18px"
+                        fontWeight="medium"
+                        color="grey.300"
+                        textAlign="center"
+                    >TOTAL GOAL — INR {props.userDetails.company.goal}</Text>
+                    <Text
+                        fontSize="40px"
+                        fontWeight="bold"
+                        color="grey.700"
+                        pt="30px"
+                        textAlign="center"
+                    >INR {props.paymentStatistics.total.amount__sum}</Text>
+                </Fragment>
+                : 
+                <Fragment>
+                    <Text
+                        fontSize="18px"
+                        fontWeight="medium"
+                        color="grey.300"
+                        textAlign="center"
+                    >TOTAL GOAL — USD {props.userDetails.company.goal}</Text>
+                    <Text
+                        fontSize="40px"
+                        fontWeight="bold"
+                        color="grey.700"
+                        pt="30px"
+                        textAlign="center"
+                    >USD {props.paymentStatistics.total.amount__sum}</Text>
+                </Fragment>
+                }
                 <Text
-                    fontSize="18px"
-                    fontWeight="medium"
-                    color="grey.300"
-                    textAlign="center"
-                >TOTAL GOAL — INR {props.userDetails.company.goal}</Text>
-                <Text
-                    fontSize="40px"
-                    fontWeight="bold"
-                    color="grey.700"
-                    pt="30px"
-                    textAlign="center"
-                >INR {props.paymentStatistics.total.amount__sum}</Text>
-                <Text
-                    fontSize="18px"
+                    fontSize="20px"
                     fontWeight="medium"
                     color="grey.300"
                     textAlign="center"

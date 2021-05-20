@@ -14,11 +14,6 @@ import LineChart from '../Chart'
 const International = (props) => {
     return(
         <Fragment>
-            <Button 
-                colorScheme="blue" 
-                onClick={props.toggleDomestic}
-                marginTop="20px"
-            >Switch to Domestic Payments</Button>
             <Heading
                 color="grey.300"
                 pt="40px"
@@ -31,6 +26,12 @@ const International = (props) => {
                 userDetails={props.userDetails} 
                 isDomestic={props.isDomestic}
             />
+
+            <Button 
+                colorScheme="blue"
+                onClick={props.toggleDomestic}
+                marginBottom="20px"
+            >View Domestic Donations</Button>
 
             <Heading
                 color="grey.300"

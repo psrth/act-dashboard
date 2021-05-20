@@ -31,7 +31,9 @@ const PaymentsTable = (props) => {
                 <Td fontWeight="medium" color="grey.500">{payment.donor_email}</Td>
                 <Td fontWeight="medium" color="grey.500">{payment.donor_phone}</Td>
                 <Td fontWeight="medium" color="grey.500">{payment.donor_country}</Td>
-                <Td fontWeight="bold" color="grey.700" isNumeric>INR {payment.amount}</Td>
+                { props.isDomestic ? 
+                  <Td fontWeight="bold" color="grey.700" isNumeric>INR {payment.amount}</Td> :
+                  <Td fontWeight="bold" color="grey.700" isNumeric>USD {payment.amount}</Td> }
                 </Tr>
             ))}
         </Tbody>

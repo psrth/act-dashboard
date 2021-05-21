@@ -31,7 +31,7 @@ import {
                         fontWeight="medium"
                         color="grey.300"
                         textAlign="center"
-                    >TOTAL GOAL — INR {props.userDetails.company.goal}</Text>
+                    >TOTAL AMOUNT RAISED</Text>
                     <Text
                         fontSize="40px"
                         fontWeight="bold"
@@ -47,7 +47,7 @@ import {
                         fontWeight="medium"
                         color="grey.300"
                         textAlign="center"
-                    >TOTAL GOAL — USD {props.userDetails.company.goal}</Text>
+                    >TOTAL AMOUNT RAISED</Text>
                     <Text
                         fontSize="40px"
                         fontWeight="bold"

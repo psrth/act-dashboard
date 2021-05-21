@@ -6,10 +6,8 @@ import React, {
 } from 'react'
 
 import {
-    Heading,
     Flex,
     Spinner,
-    Button,
   } from "@chakra-ui/react"
 
 import AuthContext from '../../store/auth'

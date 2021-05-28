@@ -16,9 +16,9 @@ This repository contains the codebase for the ACT Grants donor dashboard. The we
 - Uses the `Chakra UI` library for the frontend UI components
 
 ### To Do
-[ ] Single page view  
-[ ] Add dark mode toggle  
-[ ] Add signup, password reset, and double auth functionality  
+- [ ] Single page view 
+- [ ] Add dark mode toggle  
+- [ ] Add signup, password reset, and double auth functionality  
 
 ## Project Setup
 - run ```git clone https://github.com/psrth/act-dashboard.git``` to clone the repository

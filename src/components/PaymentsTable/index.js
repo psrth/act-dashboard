@@ -12,6 +12,12 @@ import {
     Text,
   } from "@chakra-ui/react"
 
+const sanitizeHeading = (text) => {
+  var textReturn = text.replaceAll("_", " ");
+  textReturn = textReturn.substr(0,25);
+  return textReturn;
+}
+
 const PaymentsTable = (props) => {
   return(
     <Box id="table" width="80%" mb="60px" overflowX="scroll">
@@ -30,7 +36,7 @@ const PaymentsTable = (props) => {
               { ((props.payment[0].meta)) ? 
                 <Fragment>
                   { Object.entries(props.payment[0].meta).map((meta, index) => (
-                    <Th>{meta[0]}</Th>
+                    <Th>{sanitizeHeading(meta[0])}</Th>
                   ))}
                 </Fragment> : 
                 null 

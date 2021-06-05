@@ -25,6 +25,7 @@ const PaymentsTable = (props) => {
         <TableCaption>ACT Donations from the {props.userDetails.company.name}</TableCaption>
         <Thead>
           <Tr>
+          <Th>SOURCE</Th>
           <Th>NAME</Th>
           <Th>EMAIL ADDRESS</Th>
           <Th>PHONE NUMBER</Th>
@@ -50,6 +51,7 @@ const PaymentsTable = (props) => {
         <Tbody>
           {props.payment.map((payment, key) => (
             <Tr>
+              <Td fontWeight="bold" color="grey.700">{payment.source}</Td>
               <Td fontWeight="bold" color="grey.700">{payment.donor_name}</Td>
               <Td fontWeight="medium" color="grey.500">{payment.donor_email}</Td>
               <Td fontWeight="medium" color="grey.500">{payment.donor_phone}</Td>

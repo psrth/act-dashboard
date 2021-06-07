@@ -26,6 +26,7 @@ const PaymentsTable = (props) => {
         <Thead>
           <Tr>
           <Th>SOURCE</Th>
+          <Th>DATE</Th>
           <Th>NAME</Th>
           <Th>EMAIL ADDRESS</Th>
           <Th>PHONE NUMBER</Th>
@@ -52,6 +53,7 @@ const PaymentsTable = (props) => {
           {props.payment.map((payment, key) => (
             <Tr>
               <Td fontWeight="bold" color="grey.700">{payment.source}</Td>
+              <Td fontWeight="bold" color="grey.700">{payment.payment_time}</Td>
               <Td fontWeight="bold" color="grey.700">{payment.donor_name}</Td>
               <Td fontWeight="medium" color="grey.500">{payment.donor_email}</Td>
               <Td fontWeight="medium" color="grey.500">{payment.donor_phone}</Td>

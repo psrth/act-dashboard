@@ -15,11 +15,35 @@ import AuthContext from '../../store/auth';
 const Navbar = () => {
 
     const authCtx = useContext(AuthContext);
+    const authToken = 'Token ' + authCtx.token;
     const isLoggedIn = authCtx.isLoggedIn;
     
     const logoutHandler = () => {
         if (isLoggedIn) authCtx.logout();
     }
+
+    // const exportToCSV = () => {
+    //     fetch('https://act-grants-crm.herokuapp.com/donation/export_to_csv/false',
+    //             {   
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': authToken
+    //                 }
+    //             }
+    //         ).then(response => 
+    //             response.json().then(data => ({
+    //                 data: data,
+    //                 status: response.status
+    //             })
+    //         ).then(res => {
+    //             if(res.data){
+    //                 console.log(res.data)
+    //             } else {
+    //                 alert("ERROR RETRIEVING CONTENT.");
+    //             }
+    //         }))
+    // }
 
     return(
         <div>

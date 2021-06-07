@@ -18,6 +18,8 @@ const Dashboard = () => {
 
     const authCtx = useContext(AuthContext);
     const authToken = 'Token ' + authCtx.token;
+    const domestic = authCtx.domestic;
+    const domesticToggle = authCtx.domesticToggle;
     
     const [userDetails, setUserDetails] = useState(null);
     const [paymentStatistics, setPaymentStatistics] = useState(null);
@@ -126,6 +128,7 @@ const Dashboard = () => {
     
     const toggleDomestic = () => {
         setIsDomestic(!isDomestic);
+        domesticToggle()
     }
 
     return(

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { saveAs } from 'file-saver'
 import {
     Flex,
     Spacer,
@@ -17,33 +18,35 @@ const Navbar = () => {
     const authCtx = useContext(AuthContext);
     const authToken = 'Token ' + authCtx.token;
     const isLoggedIn = authCtx.isLoggedIn;
-    
+    const domestic = authCtx.domestic;
+
     const logoutHandler = () => {
         if (isLoggedIn) authCtx.logout();
     }
 
-    // const exportToCSV = () => {
-    //     fetch('https://act-grants-crm.herokuapp.com/donation/export_to_csv/false',
-    //             {   
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                     'Authorization': authToken
-    //                 }
-    //             }
-    //         ).then(response => 
-    //             response.json().then(data => ({
-    //                 data: data,
-    //                 status: response.status
-    //             })
-    //         ).then(res => {
-    //             if(res.data){
-    //                 console.log(res.data)
-    //             } else {
-    //                 alert("ERROR RETRIEVING CONTENT.");
-    //             }
-    //         }))
-    // }
+    const exportToCSVDomestic = () => {
+        fetch('https://act-grants-crm.herokuapp.com/donation/export_to_csv/true',
+                {   
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'text/csv',
+                        'Authorization': authToken
+                },responseType: 'blob'
+            }).then(response => response.blob())
+            .then(blob => saveAs(blob, 'ACT-DONATIONS-DOMESTIC.csv'));
+    }
+
+    const exportToCSVInternational = () => {
+        fetch('https://act-grants-crm.herokuapp.com/donation/export_to_csv/false',
+                {   
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'text/csv',
+                        'Authorization': authToken
+                },responseType: 'blob'
+            }).then(response => response.blob())
+            .then(blob => saveAs(blob, 'ACT-DONATIONS-INTERNATIONAL.csv'));
+    }
 
     return(
         <div>
@@ -67,15 +70,23 @@ const Navbar = () => {
             </Link>
                 <Spacer />
                 { isLoggedIn ? 
-                <>
+                <>{ domestic ? 
                     <DownloadIcon 
-                        onClick={()=>window.print()} 
+                        onClick={exportToCSVDomestic} 
                         w={6} 
                         h={6} 
                         mr="25px"
                         color="grey.500"
                         cursor="pointer"
-                    />
+                    /> : 
+                    <DownloadIcon 
+                        onClick={exportToCSVInternational} 
+                        w={6} 
+                        h={6} 
+                        mr="25px"
+                        color="grey.500"
+                        cursor="pointer"
+                    /> }
                     <Button
                         fontSize={["20px", "20px", "24px", "24px", "24px"]}
                         padding={["14px", "14px", "24px", "24px", "24px"]}
